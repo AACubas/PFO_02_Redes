@@ -123,8 +123,8 @@ La aplicación sigue el modelo **Cliente-Servidor**:
 ### 🔑 ¿Por qué hashear contraseñas?
 
 * Nunca se guardan en texto plano.
-* Si la base de datos se filtra, el atacante no obtiene la contraseña real.
-* Con hashing seguro + sal, se dificulta fuerza bruta o rainbow tables.
+* Si la base de datos se filtra, el atacante no obtiene la contraseña real por lo que se puede preservar la información de los usuarios.
+* Con hashing seguro + sal, se dificulta la fuerza bruta o rainbow tables.
 
 ### 💾 Ventajas de usar SQLite
 
