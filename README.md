@@ -15,6 +15,24 @@ La aplicación sigue el modelo **Cliente-Servidor**:
 * **Servidor (API Flask):** expone endpoints REST para manejar usuarios y tareas.
 * **Cliente (consola en Python o `curl`):** interactúa con la API enviando solicitudes HTTP y recibiendo respuestas JSON.
 
+Requisitos:
+- Python 3.8+ (en Linux Mint)
+- pip
+- Paquetes Python: `Flask`, `requests` (para el cliente)
+- SQLite (ya instalado en el sistema)
+
+Instalación rápida:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install Flask requests
+```
+Instrucciones:
+* Descargar el repositorio.
+* En la carpeta del proyecto correr el servidor (**python3 servidor.py**)
+* Puede seguir los ejemplos de las imagenes para ingresar diferentes usuarios o puede activar el client.py desde otra terminal
+* Asegurarse de tener activado el entorno virtual (source venv/bin/activate) en ambos terminales
+
 ---
 
 ## 🚀 Funcionalidades principales
@@ -120,14 +138,15 @@ La aplicación sigue el modelo **Cliente-Servidor**:
 
 ## 📖 Conceptos clave
 
-### 🔑 ¿Por qué hashear contraseñas?
+# 4) Respuestas conceptuales
 
-* Nunca se guardan en texto plano.
-* Si la base de datos se filtra, el atacante no obtiene la contraseña real por lo que se puede preservar la información de los usuarios.
-* Con hashing seguro + sal, se dificulta la fuerza bruta o rainbow tables.
+**¿Por qué hashear contraseñas?**  
+Hashear las contraseñas aplica una función unidireccional (hash) para transformar la contraseña en una cadena difícil de invertir. Ventajas:
+- Si la base de datos es comprometida, los atacantes no obtienen contraseñas en texto plano por lo que no pueden acceder inmediatamente a las cuentas.
+- Usando algoritmos de hashing seguros (p. ej. PBKDF2, bcrypt, Argon2) con sal, se evitan ataques de rainbow tables y se realentizan ataques de fuerza bruta.
+- Las aplicaciones verifican contraseñas comparando hashes, no almacenan la contraseña real.
 
-### 💾 Ventajas de usar SQLite
-
-* Base de datos ligera y portable (un solo archivo `.db`).
-* No requiere servidor adicional.
-* Fácil de integrar con Python (librería estándar `sqlite3`).
+**Ventajas de usar SQLite para este proyecto**  
+- Ligero y sin servidor: perfecto para prototipos locales ya que no hay que configurar un servicio DB.
+- Almacena los datos en un archivo (`tareas.db`), fácil de versionar o trasladar.
+- Suficiente para cargas pequeñas y pruebas; además se integra muy bien con Python (`sqlite3` estándar).
